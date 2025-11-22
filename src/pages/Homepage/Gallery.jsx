@@ -59,10 +59,22 @@ import {
   ws1,
   ws2,
   ws3,
+  lamp1,
+  lamp2,
+  lamp3,
+  lamp4,
+  lamp5,
+  lamp6,
+  lamp7,
+  lamp8,
+  lamp9,
+  lamp10,
+  lamp11,
+  lamp12,
 } from "../../assets";
 
 // Updated Categories
-const categories = ["All", "Flower", "Toran"];
+const categories = ["All", "Flower", "Toran", "Lamp"];
 
 // Updated Product List with images
 const allProducts = [
@@ -125,6 +137,18 @@ const allProducts = [
   { id: 54, image: ws1, category: "Toran" },
   { id: 55, image: ws2, category: "Toran" },
   { id: 55, image: ws3, category: "Toran" },
+
+  { id: 56, image: lamp1, category: "Lamp" },
+  { id: 57, image: lamp2, category: "Lamp" },
+  { id: 58, image: lamp3, category: "Lamp" },
+  { id: 59, image: lamp4, category: "Lamp" },
+  { id: 60, image: lamp5, category: "Lamp" },
+  { id: 61, image: lamp6, category: "Lamp" },
+  { id: 62, image: lamp7, category: "Lamp" },
+  { id: 63, image: lamp8, category: "Lamp" },
+  { id: 64, image: lamp9, category: "Lamp" },
+  { id: 65, image: lamp10, category: "Lamp" },
+  { id: 66, image: lamp11, category: "Lamp" },
 ];
 
 export default function Products() {
@@ -156,9 +180,7 @@ export default function Products() {
 
   return (
     <div id="gallery" className="bg-white pt-32 text-black">
-      <h2 className="text-3xl font-bold text-center mb-10">
-        Flower & Toran Collection
-      </h2>
+      <h2 className="text-3xl font-bold text-center mb-10">Gallery</h2>
 
       {/* Filter Category Buttons */}
       <div className="flex justify-center gap-4 mb-12 flex-wrap">

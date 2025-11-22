@@ -59,7 +59,21 @@ import toran18 from "../assets/images/toran18.jpeg";
 import toran19 from "../assets/images/toran19.jpeg";
 import toran20 from "../assets/images/toran20.jpeg";
 
+import lamp1 from "../assets/images/lamp1.jpeg";
+import lamp2 from "../assets/images/lamp2.jpeg";
+import lamp3 from "../assets/images/lamp3.jpeg";
+import lamp4 from "../assets/images/lamp4.jpeg";
+import lamp5 from "../assets/images/lamp5.jpeg";
+import lamp6 from "../assets/images/lamp6.jpeg";
+import lamp7 from "../assets/images/lamp7.jpeg";
+import lamp8 from "../assets/images/lamp8.jpeg";
+import lamp9 from "../assets/images/lamp9.jpeg";
+import lamp10 from "../assets/images/lamp10.jpeg";
+import lamp11 from "../assets/images/lamp11.jpeg";
+import lamp12 from "../assets/images/lamp12.jpeg";
+import flowerpot1 from "../assets/images/flowerpot.jpeg";
 export {
+  flowerpot1,
   toran11,
   toran12,
   toran13,
@@ -115,4 +129,16 @@ export {
   toran8,
   toran9,
   toran10,
+  lamp1,
+  lamp2,
+  lamp3,
+  lamp4,
+  lamp5,
+  lamp6,
+  lamp7,
+  lamp8,
+  lamp9,
+  lamp10,
+  lamp11,
+  lamp12,
 };

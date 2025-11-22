@@ -487,8 +487,8 @@ const ProductShowcase = () => {
   };
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="py-16 bg-white px-4 sm:px-8 lg:px-12">
+      <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
             <h2 className="text-3xl font-bold text-gray-900">Our Products</h2>
@@ -504,7 +504,7 @@ const ProductShowcase = () => {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -539,11 +539,11 @@ const ProductShowcase = () => {
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <span className="text-sm text-gray-500">Active filters:</span>
             {activeFilter !== "All" && (
-              <div className="flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+              <div className="flex items-center bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">
                 {activeFilter}
                 <button
                   onClick={() => setActiveFilter("All")}
-                  className="ml-2 text-blue-600 hover:text-blue-800"
+                  className="ml-2 text-pink-600 hover:text-pink-800"
                 >
                   <FiX size={16} />
                 </button>
@@ -562,7 +562,7 @@ const ProductShowcase = () => {
             )}
             <button
               onClick={clearFilters}
-              className="text-sm text-blue-600 hover:text-blue-800 underline"
+              className="text-sm text-pink-600 hover:text-pink-800 underline"
             >
               Clear all
             </button>
@@ -589,7 +589,7 @@ const ProductShowcase = () => {
                     }}
                     className={`px-4 py-2 rounded-lg text-sm text-left ${
                       activeFilter === category
-                        ? "bg-gray-900 text-white"
+                        ? "bg-black text-white"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
@@ -609,7 +609,7 @@ const ProductShowcase = () => {
               onClick={() => setActiveFilter(category)}
               className={`px-4 py-2 rounded-full whitespace-nowrap ${
                 activeFilter === category
-                  ? "bg-gray-900 text-white"
+                  ? "bg-black text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -640,7 +640,7 @@ const ProductShowcase = () => {
             </p>
             <button
               onClick={clearFilters}
-              className="text-gray-900 font-medium underline hover:text-blue-600"
+              className="text-black font-medium underline hover:text-pink-600"
             >
               Reset filters
             </button>

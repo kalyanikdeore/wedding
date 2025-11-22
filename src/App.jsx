@@ -8,6 +8,7 @@ import {
 
 import Layout from "./layout/Layout";
 import Homepage from "./pages/Homepage/Homepage";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   const router = createBrowserRouter(
@@ -18,7 +19,11 @@ function App() {
     )
   );
 
-  return <RouterProvider router={router} />;
+  return (
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
+  );
 }
 
 export default App;

@@ -11,20 +11,7 @@ import { useCart } from "../../context/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Safe cart context usage with fallback
-  let itemCount = 0;
-  let toggleCart = () => {
-    console.warn("Cart functionality not available");
-  };
-
-  try {
-    const cart = useCart();
-    itemCount = cart.itemCount || 0;
-    toggleCart = cart.toggleCart || toggleCart;
-  } catch (error) {
-    console.warn("Cart context not available:", error.message);
-  }
+  const cart = useCart();
 
   const menuItems = [
     { name: "Home", link: "#home" },
@@ -35,12 +22,13 @@ const Navbar = () => {
   ];
 
   const handleCartClick = () => {
-    toggleCart();
+    cart.toggleCart();
   };
 
   const handleMenuToggle = () => {
     setIsOpen(!isOpen);
   };
+
   const scrollToContact = () => {
     const section = document.getElementById("contact");
     if (section) {
@@ -55,7 +43,7 @@ const Navbar = () => {
       <div className="bg-pink-600 text-white fixed w-full z-50 top-0">
         <div className="max-w-7xl mx-auto px-3 sm:px-6">
           <div className="flex justify-between items-center h-10 text-xs sm:text-sm">
-            {/* Contact Info - Auto wrap on small devices */}
+            {/* Contact Info */}
             <div className="flex items-center gap-3 flex-wrap max-w-[70%] sm:max-w-full">
               <div className="flex items-center gap-1 min-w-max">
                 <FiMail className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -63,7 +51,6 @@ const Navbar = () => {
                   weddingstorensk@gmail.com
                 </span>
               </div>
-
               <div className="flex items-center gap-1 min-w-max">
                 <FiPhone className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>+91 7030050044</span>
@@ -88,19 +75,23 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <div className="text-2xl md:text-3xl font-bold text-black cursor-pointer tracking-wide">
+            {/* <div className="text-2xl md:text-3xl font-bold text-black cursor-pointer tracking-wide">
               Wedding<span className="text-pink-600">Store</span>
-            </div>
-
+            </div> */}
+            <a
+              href="#home"
+              className="text-2xl md:text-3xl font-bold text-black cursor-pointer tracking-wide flex"
+              onClick={() => setIsOpen(false)}
+            >
+              Wedding<span className="text-pink-600">Store</span>
+            </a>
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-8">
               {menuItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.link}
-                  className="text-gray-600 font-medium text-sm tracking-wide hover:text-pink-600 transition duration-300
-                  relative after:absolute after:w-0 after:h-[2px] after:bg-pink-600 after:left-0 after:-bottom-1
-                  hover:after:w-full after:transition-all after:duration-300"
+                  className="text-gray-600 font-medium text-sm tracking-wide hover:text-pink-600 transition duration-300 relative after:absolute after:w-0 after:h-[2px] after:bg-pink-600 after:left-0 after:-bottom-1 hover:after:w-full after:transition-all after:duration-300"
                 >
                   {item.name}
                 </a>
@@ -115,9 +106,9 @@ const Navbar = () => {
                 className="relative p-2 text-gray-600 hover:text-pink-600 transition-colors"
               >
                 <FiShoppingCart className="w-5 h-5" />
-                {itemCount > 0 && (
+                {cart.itemCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                    {itemCount}
+                    {cart.itemCount}
                   </span>
                 )}
               </button>
@@ -139,19 +130,11 @@ const Navbar = () => {
                 className="relative p-2 text-gray-600 hover:text-pink-600 transition-colors"
               >
                 <FiShoppingCart className="w-5 h-5" />
-                {itemCount > 0 && (
+                {cart.itemCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
-                    {itemCount}
+                    {cart.itemCount}
                   </span>
                 )}
-              </button>
-
-              {/* Mobile Enquiry Button - Hidden on smallest screens */}
-              <button
-                onClick={scrollToContact}
-                className="hidden xs:inline-block bg-gradient-to-r from-pink-500 to-pink-700 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-md hover:opacity-90 transition-opacity"
-              >
-                Enquiry
               </button>
 
               {/* Mobile Menu Button */}
@@ -198,16 +181,6 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-
-              {/* Mobile Enquiry Button - Full width in menu */}
-              <div className="px-4 pt-2 pb-1">
-                <button
-                  onClick={scrollToContact}
-                  className="bg-gradient-to-r from-pink-500 to-pink-700 text-white w-full px-5 py-3 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-opacity"
-                >
-                  Enquiry Now
-                </button>
-              </div>
             </div>
           )}
         </div>

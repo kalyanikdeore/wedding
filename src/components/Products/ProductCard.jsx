@@ -1,9 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Heart, Info } from "lucide-react";
+import { ShoppingCart, Heart } from "lucide-react";
+import { useCart } from "../../context/CartContext";
 
-const ProductCard = ({ product, index, addToCart }) => {
+const ProductCard = ({ product, index }) => {
+  const { addToCart } = useCart();
+
   const handleAddToCart = (e) => {
     e.preventDefault();
     addToCart(product);
@@ -39,7 +42,6 @@ const ProductCard = ({ product, index, addToCart }) => {
                 {product.name}
               </h3>
             </Link>
-            {/* <span className="font-bold text-gray-900">₹{product.price}</span> */}
           </div>
 
           {product.size && (
@@ -54,12 +56,6 @@ const ProductCard = ({ product, index, addToCart }) => {
               <ShoppingCart className="w-4 h-4" />
               <span className="hidden md:flex">Add to Cart</span>
             </button>
-            {/* <Link
-              to={`/product/${product.id}`}
-              className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
-            >
-              View Details
-            </Link> */}
           </div>
         </div>
       </div>

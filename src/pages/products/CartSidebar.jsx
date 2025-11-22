@@ -53,8 +53,8 @@ const CartSidebar = () => {
   } = useCart();
 
   const shareOnWhatsApp = () => {
-    const storeName = "Philippine Agri Solution";
-    const storePhone = "917038970271";
+    const storeName = "Wedding Store";
+    const storePhone = "917030050044";
 
     const itemsText = cartItems
       .map(

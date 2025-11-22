@@ -8,21 +8,26 @@ export const CartProvider = ({ children }) => {
 
   // Load cart from localStorage on initial render
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
+    const savedCart = localStorage.getItem("weddingStoreCart");
     if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
+      try {
+        setCartItems(JSON.parse(savedCart));
+      } catch (error) {
+        console.error("Error loading cart from localStorage:", error);
+        setCartItems([]);
+      }
     }
   }, []);
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
+    localStorage.setItem("weddingStoreCart", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const cartTotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + (item.price || 0) * item.quantity,
     0
   );
 
@@ -38,7 +43,14 @@ export const CartProvider = ({ children }) => {
         );
       }
 
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [
+        ...prevItems,
+        {
+          ...product,
+          quantity: 1,
+          addedAt: Date.now(),
+        },
+      ];
     });
   };
 
@@ -69,25 +81,46 @@ export const CartProvider = ({ children }) => {
     setIsCartOpen(!isCartOpen);
   };
 
-  return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        cartTotal,
-        itemCount,
-        isCartOpen,
-        toggleCart,
-        clearCart,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
+  const closeCart = () => {
+    setIsCartOpen(false);
+  };
+
+  const value = {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    cartTotal,
+    itemCount,
+    isCartOpen,
+    toggleCart,
+    clearCart,
+    closeCart,
+  };
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
+// Custom hook with safety check
 export const useCart = () => {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+  if (!context) {
+    // Return a default implementation if context is not available
+    console.warn(
+      "useCart must be used within a CartProvider. Using fallback implementation."
+    );
+    return {
+      cartItems: [],
+      addToCart: () => console.warn("Cart not available"),
+      removeFromCart: () => console.warn("Cart not available"),
+      updateQuantity: () => console.warn("Cart not available"),
+      cartTotal: 0,
+      itemCount: 0,
+      isCartOpen: false,
+      toggleCart: () => console.warn("Cart not available"),
+      clearCart: () => console.warn("Cart not available"),
+      closeCart: () => console.warn("Cart not available"),
+    };
+  }
+  return context;
 };
