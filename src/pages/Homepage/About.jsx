@@ -14,7 +14,7 @@ const AboutUs = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
         {/* Left Content */}
         <div className="space-y-6 text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-black">
+          <h2 className="text-4xl md:text-4xl font-extrabold text-black">
             About <span className="text-pink-500">Us</span>
           </h2>
           <div className="w-20 h-1 bg-pink-500 rounded-full mx-auto md:mx-0"></div>

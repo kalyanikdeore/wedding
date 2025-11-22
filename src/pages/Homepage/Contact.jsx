@@ -110,7 +110,7 @@ export default function Contact() {
             type="submit"
             className="w-full md:w-auto mt-6 bg-pink-600 hover:bg-pink-700 text-white px-12 py-3 rounded-full font-semibold tracking-wide transition-all hover:scale-105 shadow-lg"
           >
-            Submit
+            Send Message
           </button>
         </form>
       </div>

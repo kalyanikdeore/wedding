@@ -72,6 +72,31 @@ import lamp10 from "../assets/images/lamp10.jpeg";
 import lamp11 from "../assets/images/lamp11.jpeg";
 import lamp12 from "../assets/images/lamp12.jpeg";
 import flowerpot1 from "../assets/images/flowerpot.jpeg";
+// metal Artifical (ma images)
+import ma1 from "../assets/images/ma1.jpeg";
+import ma2 from "../assets/images/ma2.jpeg";
+import ma4 from "../assets/images/ma4.jpeg";
+import ma5 from "../assets/images/ma5.jpeg";
+import ma6 from "../assets/images/ma6.jpeg";
+import ma7 from "../assets/images/ma7.jpeg";
+import ma8 from "../assets/images/ma8.jpeg";
+import ma9 from "../assets/images/ma9.jpeg";
+import ma10 from "../assets/images/ma10.jpeg";
+import ma11 from "../assets/images/ma11.jpeg";
+import ma12 from "../assets/images/ma12.jpeg";
+import ma13 from "../assets/images/ma13.jpeg";
+import ma14 from "../assets/images/ma14.jpeg";
+import ma15 from "../assets/images/ma15.jpeg";
+import ma16 from "../assets/images/ma16.jpeg";
+import ma17 from "../assets/images/ma17.jpeg";
+import ma18 from "../assets/images/ma18.jpeg";
+import ma19 from "../assets/images/ma19.jpeg";
+import ma20 from "../assets/images/ma20.jpeg";
+import ma21 from "../assets/images/ma21.jpeg";
+import ma22 from "../assets/images/ma22.jpeg";
+import ma23 from "../assets/images/ma23.jpeg";
+import ma24 from "../assets/images/ma24.jpeg";
+import ma25 from "../assets/images/ma25.jpeg";
 export {
   flowerpot1,
   toran11,
@@ -141,4 +166,28 @@ export {
   lamp10,
   lamp11,
   lamp12,
+  ma1,
+  ma2,
+  ma4,
+  ma5,
+  ma6,
+  ma7,
+  ma8,
+  ma9,
+  ma10,
+  ma11,
+  ma12,
+  ma13,
+  ma14,
+  ma15,
+  ma16,
+  ma17,
+  ma18,
+  ma19,
+  ma20,
+  ma21,
+  ma22,
+  ma23,
+  ma24,
+  ma25,
 };
