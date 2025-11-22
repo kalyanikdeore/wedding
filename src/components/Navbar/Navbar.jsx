@@ -51,44 +51,30 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Fixed Navbar - Responsive */}
+      {/* Top Fixed Navbar - Fully Responsive */}
       <div className="bg-pink-600 text-white fixed w-full z-50 top-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center h-10 text-sm">
-            {/* Contact Info - Hidden on mobile, visible on medium screens and up */}
-            <div className="hidden md:flex items-center gap-6">
-              <div className="flex items-center gap-1">
-                <FiMail className="flex-shrink-0" />
-                <span className="hidden lg:inline">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          <div className="flex justify-between items-center h-10 text-xs sm:text-sm">
+            {/* Contact Info - Auto wrap on small devices */}
+            <div className="flex items-center gap-3 flex-wrap max-w-[70%] sm:max-w-full">
+              <div className="flex items-center gap-1 min-w-max">
+                <FiMail className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="truncate max-w-[100px] sm:max-w-none">
                   weddingstorensk@gmail.com
                 </span>
-                <span className="lg:hidden">weddingstorensk@gmail.com</span>
               </div>
-              <div className="flex items-center gap-1">
-                <FiPhone className="flex-shrink-0" />
+
+              <div className="flex items-center gap-1 min-w-max">
+                <FiPhone className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>+91 7030050044</span>
               </div>
             </div>
 
-            {/* Mobile Contact Info - Visible only on mobile */}
-            <div className="flex md:hidden items-center gap-3 text-xs">
-              <div className="flex items-center gap-1">
-                <FiMail className="w-3 h-3" />
-                <span className="truncate max-w-[120px]">
-                  weddingstorensk@gmail.com
-                </span>
-              </div>
-              <div className="flex items-center gap-1">
-                <FiPhone className="w-3 h-3" />
-                <span>+91 7030050044</span>
-              </div>
-            </div>
-
-            {/* Social Media Icons */}
-            <div className="flex items-center gap-3">
-              <FiFacebook className="hover:text-gray-300 cursor-pointer w-4 h-4" />
-              <FiInstagram className="hover:text-gray-300 cursor-pointer w-4 h-4" />
-              <FiTwitter className="hover:text-gray-300 cursor-pointer w-4 h-4" />
+            {/* Social Icons */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <FiFacebook className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
+              <FiInstagram className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
+              <FiTwitter className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
             </div>
           </div>
         </div>

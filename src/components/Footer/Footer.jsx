@@ -92,7 +92,7 @@ const Footer = () => {
       {/* Copyright */}
       <div className="text-center ">
         <p className="text-xs text-gray-500 mt-10">
-          © {new Date().getFullYear()} Wedding Store | Made with ❤️
+          © {new Date().getFullYear()} Wedding Store
         </p>
       </div>
     </footer>
