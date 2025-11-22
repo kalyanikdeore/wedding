@@ -20,14 +20,15 @@ const AboutUs = () => {
           <div className="w-20 h-1 bg-pink-500 rounded-full mx-auto md:mx-0"></div>
 
           <p className="text-gray-600 text-lg leading-relaxed">
-            We offer an exclusive collection of luxurious jewelry designed to
-            make every wedding moment unforgettable. Our craftsmanship reflects
-            elegance, love, and tradition with a modern touch.
+            We dedicate ourselves to crafting exquisite flower torans and pot
+            decorations that bring traditional elegance and natural beauty into
+            your spaces.
           </p>
 
           <p className="text-gray-600 text-lg leading-relaxed">
-            Explore a wide range of Rings, Earrings, Bangles, and Bridal Sets
-            that are crafted to perfection to enhance your beauty and grace.
+            Sustainable materials and attention to detail, our creations are
+            perfect for adorning your entrance, enhancing your interiors, or
+            celebrating special festivals and weddings.
           </p>
 
           <button
