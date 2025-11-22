@@ -9,6 +9,27 @@ const Hero = () => {
   const images = [ws1, ws2, ws3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const scrollToContact = () => {
+    const section = document.getElementById("contact");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToProducts = () => {
+    const section = document.getElementById("products");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToGallery = () => {
+    const section = document.getElementById("gallery");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   // Auto Slide Effect
   useEffect(() => {
     const interval = setInterval(() => {
@@ -76,14 +97,14 @@ const Hero = () => {
         {/* Buttons */}
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => navigate("/register")}
+            onClick={scrollToContact}
             className="bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-transform"
           >
-            Shop Now
+            Get In Touch
           </button>
 
           <button
-            onClick={() => navigate("/products")}
+            onClick={scrollToProducts}
             className="bg-white text-pink-600 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-pink-50 hover:scale-105 transition-transform"
           >
             Explore Products

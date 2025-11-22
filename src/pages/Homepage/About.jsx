@@ -2,15 +2,22 @@ import React from "react";
 import { ws1, ws2, ws3 } from "../../assets";
 
 const AboutUs = () => {
+  const scrollToContact = () => {
+    const section = document.getElementById("gallery");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+    }
+  };
   return (
     <section id="about" className="bg-white text-black py-24 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
         {/* Left Content */}
-        <div className="space-y-6">
-          <h2 className="text-5xl font-extrabold text-black">
+        <div className="space-y-6 text-center md:text-left">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-black">
             About <span className="text-pink-500">Us</span>
           </h2>
-          <div className="w-24 h-1 bg-pink-500 rounded-full"></div>
+          <div className="w-20 h-1 bg-pink-500 rounded-full mx-auto md:mx-0"></div>
 
           <p className="text-gray-600 text-lg leading-relaxed">
             We offer an exclusive collection of luxurious jewelry designed to
@@ -23,28 +30,31 @@ const AboutUs = () => {
             that are crafted to perfection to enhance your beauty and grace.
           </p>
 
-          <button className="mt-4 bg-pink-500 text-white px-7 py-3 rounded-full shadow-md hover:bg-pink-600 transition-all">
+          <button
+            onClick={scrollToContact}
+            className="mt-4 bg-pink-500 text-white px-7 py-3 rounded-full shadow-md hover:bg-pink-600 transition-all"
+          >
             Explore Collection
           </button>
         </div>
 
-        {/* Right Images - Staggered Style */}
-        <div className="relative flex justify-center items-center">
+        {/* Right Images - Mobile Responsive */}
+        <div className="relative flex flex-col md:flex-row justify-center items-center gap-6">
           <img
             src={ws1}
-            className="w-56 h-72 object-cover rounded-2xl shadow-xl transform translate-x-6 hover:scale-105 transition-all duration-300"
+            className="w-48 h-64 md:w-56 md:h-72 object-cover rounded-2xl shadow-xl transition-all duration-300 hover:scale-105"
             alt="jewelry-img1"
           />
 
           <img
             src={ws2}
-            className="w-56 h-72 object-cover rounded-2xl shadow-xl transform -translate-y-10 -translate-x-6 hover:scale-105 transition-all duration-300"
+            className="w-48 h-64 md:w-56 md:h-72 object-cover rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 md:-translate-y-10"
             alt="jewelry-img2"
           />
 
           <img
             src={ws3}
-            className="w-56 h-72 object-cover rounded-2xl shadow-xl transform translate-y-10 hover:scale-105 transition-all duration-300"
+            className="w-48 h-64 md:w-56 md:h-72 object-cover rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 md:translate-y-10"
             alt="jewelry-img3"
           />
         </div>

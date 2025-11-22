@@ -1,10 +1,12 @@
 import React from "react";
-import Products from "./Products";
+// import Products from "./Products";
 import Home from "./Home";
 import Contact from "./Contact";
 import Gallery from "./Gallery";
 import About from "./About";
 import WhatsAppPopup from "../../components/PopUp/WhatsAppPopup";
+import ProdductCategories from "../ProductCategories/ProductCategories";
+import ProductShowcase from "../products/ProductShowcase";
 
 function Homepage() {
   return (
@@ -17,9 +19,13 @@ function Homepage() {
         <About />
       </div>
 
-      <div id="products">
+      {/* <div id="products">
         <Products />
+      </div> */}
+      <div id="products">
+        <ProductShowcase />
       </div>
+      {/* <ProdductCategories /> */}
 
       <div id="gallery">
         <Gallery />

@@ -22,7 +22,7 @@ export default function Contact() {
       return;
     }
 
-    const whatsappNumber = "917030050044"; // Without +
+    const whatsappNumber = "917030050044";
     const whatsappMessage = `Hello Wedding Store,%0A%0AName: ${firstName} ${lastName}%0AEmail: ${email}%0AMessage: ${message}`;
 
     window.open(
@@ -34,26 +34,23 @@ export default function Contact() {
   return (
     <div
       id="contact"
-      className="min-h-screen bg-white flex justify-center items-center pt-30"
+      className="min-h-screen bg-white flex justify-center items-center py-20 px-6"
     >
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Info */}
-        <div className="text-black space-y-5 md:pl-10">
-          <span className="text-4xl text-pink-500">📩</span>
+        <div className="text-black space-y-5 text-center md:text-left">
+          <span className="text-5xl text-pink-500">📩</span>
 
-          <h3 className="text-2xl font-extrabold leading-snug text-black">
-            For any inquiries or custom
-            <br /> orders ✨
+          <h3 className="text-3xl font-extrabold leading-snug">
+            For any inquiries or custom <br /> orders ✨
           </h3>
 
           <p className="text-lg opacity-80 font-medium">Email us anytime:</p>
-
-          <p className="text-xl font-bold text-pink-600 underline underline-offset-4">
+          <p className="text-xl font-bold text-pink-600 underline underline-offset-4 break-all">
             weddingstorensk@gmail.com
           </p>
 
-          <p className="text-lg opacity-80 font-medium">Contact No</p>
-
+          <p className="text-lg opacity-80 font-medium">Contact No.</p>
           <p className="text-xl font-bold text-pink-600 underline underline-offset-4">
             +91 70300 50044
           </p>
@@ -64,10 +61,10 @@ export default function Contact() {
           className="space-y-8 text-black font-medium"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-3xl font-extrabold text-black">Contact Us</h2>
-          <div className="w-20 h-1 bg-pink-500 mb-3 rounded-full"></div>
+          <h2 className="text-3xl font-extrabold">Contact Us</h2>
+          <div className="w-24 h-1 bg-pink-500 mb-3 rounded-full"></div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input
               type="text"
               name="firstName"
@@ -107,11 +104,11 @@ export default function Contact() {
             onChange={handleChange}
             className="bg-transparent border-b-2 border-black/50 p-2 w-full focus:outline-none focus:border-pink-500 transition-all"
             required
-          ></textarea>
+          />
 
           <button
             type="submit"
-            className="mt-6 bg-pink-600 hover:bg-pink-700 text-white px-12 py-3 rounded-full font-semibold tracking-wide transition-all hover:scale-105 shadow-lg"
+            className="w-full md:w-auto mt-6 bg-pink-600 hover:bg-pink-700 text-white px-12 py-3 rounded-full font-semibold tracking-wide transition-all hover:scale-105 shadow-lg"
           >
             Submit
           </button>
