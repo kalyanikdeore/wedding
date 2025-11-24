@@ -21,19 +21,19 @@ const ProductCard = ({ product, index }) => {
       className="group"
     >
       <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
-        <Link to={`/product/${product.id}`} className="block">
-          <div className="relative aspect-square overflow-hidden">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-            <button className="absolute top-3 right-3 bg-white/80 hover:bg-white p-2 rounded-full backdrop-blur-sm transition-all hover:scale-110">
-              <Heart className="w-4 h-4 text-rose-500" />
-            </button>
-          </div>
-        </Link>
+        {/* <Link to={`/product/${product.id}`} className="block"> */}
+        <div className="relative aspect-square overflow-hidden">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <button className="absolute top-3 right-3 bg-white/80 hover:bg-white p-2 rounded-full backdrop-blur-sm transition-all hover:scale-110">
+            <Heart className="w-4 h-4 text-rose-500" />
+          </button>
+        </div>
+        {/* </Link> */}
 
         <div className="p-4">
           <div className="flex justify-between items-start mb-1">
