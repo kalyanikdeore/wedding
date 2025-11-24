@@ -1,5 +1,5 @@
 // Updated Products component with Flower & Toran categories
-// (Images imported + categories & data updated)
+// (Images imported + categories & data updated) with pagination
 
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -130,7 +130,7 @@ const allProducts = [
   { id: 19, image: flower20, category: "Artificial Flower" },
   { id: 20, image: flower21, category: "Artificial Flower" },
   { id: 21, image: flower22, category: "Artificial Flower" },
-  { id: 22, image: flower23, category: "Artificial Flower" }, // Fixed typo: "Artificial Flowerer" to "Artificial Flower"
+  { id: 22, image: flower23, category: "Artificial Flower" },
   { id: 23, image: flower24, category: "Artificial Flower" },
   { id: 24, image: flower25, category: "Artificial Flower" },
   { id: 25, image: flower26, category: "Artificial Flower" },
@@ -153,7 +153,7 @@ const allProducts = [
   { id: 40, image: toran8, category: "Handicrafts" },
   { id: 41, image: toran9, category: "Handicrafts" },
   { id: 42, image: toran10, category: "Handicrafts" },
-  { id: 43, image: toran11, category: "Handicrafts" }, // Fixed duplicate ID
+  { id: 43, image: toran11, category: "Handicrafts" },
   { id: 44, image: toran12, category: "Handicrafts" },
   { id: 45, image: toran13, category: "Handicrafts" },
   { id: 46, image: toran14, category: "Handicrafts" },
@@ -181,7 +181,7 @@ const allProducts = [
   { id: 66, image: lamp11, category: "Lamp" },
   { id: 67, image: lamp12, category: "Lamp" },
 
-  // Metal Articles Products - Fixed category name consistency (removed extra space)
+  // Metal Articles Products
   { id: 68, image: ma1, category: "Metal Articles" },
   { id: 69, image: ma2, category: "Metal Articles" },
   { id: 70, image: ma4, category: "Metal Articles" },
@@ -212,14 +212,32 @@ export default function Products() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
 
   const filteredProducts =
     activeCategory === "All"
       ? allProducts
       : allProducts.filter((p) => p.category === activeCategory);
 
+  // Calculate pagination values
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Reset to page 1 when category changes
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
+
   const openModal = (index) => {
-    setCurrentIndex(index);
+    // Calculate the actual index in the filtered products array
+    const actualIndex = indexOfFirstProduct + index;
+    setCurrentIndex(actualIndex);
     setShowModal(true);
   };
 
@@ -233,6 +251,39 @@ export default function Products() {
     setCurrentIndex((prev) =>
       prev === 0 ? filteredProducts.length - 1 : prev - 1
     );
+  };
+
+  // Pagination functions
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const pageNumbers = [];
+    const maxVisiblePages = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    // Adjust start page if we're near the end
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return pageNumbers;
   };
 
   return (
@@ -258,8 +309,8 @@ export default function Products() {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
-        {filteredProducts.map((product, index) => (
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto px-4 mb-8">
+        {currentProducts.map((product, index) => (
           <div
             key={product.id}
             onClick={() => openModal(index)}
@@ -272,6 +323,62 @@ export default function Products() {
             />
           </div>
         ))}
+      </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-2 mb-8">
+          {/* Previous Button */}
+          <button
+            onClick={prevPage}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded-lg border border-pink-500 transition
+              ${
+                currentPage === 1
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-white text-pink-500 hover:bg-pink-500 hover:text-white"
+              }`}
+          >
+            <FaChevronLeft size={16} />
+          </button>
+
+          {/* Page Numbers */}
+          {getPageNumbers().map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => goToPage(pageNumber)}
+              className={`px-4 py-2 rounded-lg border border-pink-500 transition
+                ${
+                  currentPage === pageNumber
+                    ? "bg-pink-500 text-white"
+                    : "bg-white text-pink-500 hover:bg-pink-500 hover:text-white"
+                }`}
+            >
+              {pageNumber}
+            </button>
+          ))}
+
+          {/* Next Button */}
+          <button
+            onClick={nextPage}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded-lg border border-pink-500 transition
+              ${
+                currentPage === totalPages
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-white text-pink-500 hover:bg-pink-500 hover:text-white"
+              }`}
+          >
+            <FaChevronRight size={16} />
+          </button>
+        </div>
+      )}
+
+      {/* Page Info */}
+      <div className="text-center text-gray-600 mb-8">
+        Showing {indexOfFirstProduct + 1}-
+        {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
+        {filteredProducts.length} products
       </div>
 
       {/* Popup Image Viewer */}
