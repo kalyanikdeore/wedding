@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiFilter, FiChevronDown, FiX, FiSearch } from "react-icons/fi";
+import {
+  FiFilter,
+  FiChevronDown,
+  FiChevronLeft,
+  FiX,
+  FiSearch,
+  FiChevronRight,
+} from "react-icons/fi";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/Products/ProductCard";
 import { useCart } from "../../context/CartContext";
@@ -838,6 +845,8 @@ const ProductShowcase = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 8;
 
   // Safe usage of useCart with fallback
   let cartContext;
@@ -852,7 +861,6 @@ const ProductShowcase = () => {
     cartContext?.addToCart ||
     ((product) => {
       console.log("Add to cart functionality not available. Product:", product);
-      // You can add a toast notification here
       alert(`${product.name} added to cart! (Demo mode)`);
     });
 
@@ -869,13 +877,63 @@ const ProductShowcase = () => {
       product.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Reset to page 1 when filters or search change
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter, searchQuery]);
+
+  // Calculate pagination values
+  const totalPages = Math.ceil(searchedProducts.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = searchedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
   const clearFilters = () => {
     setActiveFilter("All");
     setSearchQuery("");
+    setCurrentPage(1);
+  };
+
+  // Pagination functions
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const pageNumbers = [];
+    const maxVisiblePages = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return pageNumbers;
   };
 
   return (
-    <section className="py-16 bg-white px-4 sm:px-8 lg:px-12">
+    <section className="py-10 bg-white px-4 sm:px-8 lg:px-26">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
@@ -960,6 +1018,15 @@ const ProductShowcase = () => {
           </div>
         )}
 
+        {/* Results Count */}
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-sm text-gray-600">
+            Showing {indexOfFirstProduct + 1}-
+            {Math.min(indexOfLastProduct, searchedProducts.length)} of{" "}
+            {searchedProducts.length} products
+          </p>
+        </div>
+
         {/* Mobile Filters Dropdown */}
         <AnimatePresence>
           {showMobileFilters && (
@@ -1010,17 +1077,73 @@ const ProductShowcase = () => {
         </div>
 
         {/* Product Grid */}
-        {searchedProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {searchedProducts.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                index={index}
-                addToCart={addToCart}
-              />
-            ))}
-          </div>
+        {currentProducts.length > 0 ? (
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+              {currentProducts.map((product, index) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  index={index}
+                  addToCart={addToCart}
+                />
+              ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex flex-col items-center gap-4 mb-8">
+                {/* Pagination Buttons */}
+                <div className="flex justify-center items-center gap-2 flex-wrap">
+                  {/* Previous Button */}
+                  <button
+                    onClick={prevPage}
+                    disabled={currentPage === 1}
+                    className={`flex items-center gap-1 px-4 py-2 rounded-lg border transition-all
+                      ${
+                        currentPage === 1
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300"
+                          : "bg-white text-pink-600 hover:bg-pink-600 hover:text-white border-pink-600 hover:border-pink-700"
+                      }`}
+                  >
+                    <FiChevronLeft className="w-4 h-4" />
+                    Previous
+                  </button>
+
+                  {/* Page Numbers */}
+                  {getPageNumbers().map((pageNumber) => (
+                    <button
+                      key={pageNumber}
+                      onClick={() => goToPage(pageNumber)}
+                      className={`px-4 py-2 rounded-lg border transition-all min-w-[40px]
+                        ${
+                          currentPage === pageNumber
+                            ? "bg-pink-600 text-white border-pink-600"
+                            : "bg-white text-pink-600 hover:bg-pink-50 border-pink-600"
+                        }`}
+                    >
+                      {pageNumber}
+                    </button>
+                  ))}
+
+                  {/* Next Button */}
+                  <button
+                    onClick={nextPage}
+                    disabled={currentPage === totalPages}
+                    className={`flex items-center gap-1 px-4 py-2 rounded-lg border transition-all
+                      ${
+                        currentPage === totalPages
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300"
+                          : "bg-white text-pink-600 hover:bg-pink-600 hover:text-white border-pink-600 hover:border-pink-700"
+                      }`}
+                  >
+                    Next
+                    <FiChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-12">
             <div className="text-gray-400 mb-4">

@@ -21,8 +21,7 @@ const ProductCard = ({ product, index }) => {
       className="group"
     >
       <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
-        {/* <Link to={`/product/${product.id}`} className="block"> */}
-        <div className="relative aspect-square overflow-hidden">
+        <div className="relative h-60   overflow-hidden">
           <img
             src={product.image}
             alt={product.name}
@@ -33,7 +32,6 @@ const ProductCard = ({ product, index }) => {
             <Heart className="w-4 h-4 text-rose-500" />
           </button>
         </div>
-        {/* </Link> */}
 
         <div className="p-4">
           <div className="flex justify-between items-start mb-1">
@@ -51,7 +49,7 @@ const ProductCard = ({ product, index }) => {
           <div className="flex justify-between items-center mt-3">
             <button
               onClick={handleAddToCart}
-              className="flex items-center gap-1 text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg transition-colors"
+              className="flex items-center gap-7 text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg transition-colors"
             >
               <ShoppingCart className="w-4 h-4" />
               <span className="hidden md:flex">Add to Cart</span>

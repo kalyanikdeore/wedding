@@ -287,8 +287,8 @@ export default function Products() {
   };
 
   return (
-    <div id="gallery" className="bg-white pt-32 text-black">
-      <h2 className="text-3xl font-bold text-center mb-10">Gallery</h2>
+    <div id="gallery" className="bg-white pt-10 text-black">
+      <h2 className="text-4xl font-bold text-center mb-10">Gallery</h2>
 
       {/* Filter Category Buttons */}
       <div className="flex justify-center gap-4 mb-12 flex-wrap">
