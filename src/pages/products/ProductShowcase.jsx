@@ -897,20 +897,25 @@ const ProductShowcase = () => {
     setCurrentPage(1);
   };
 
+  // Scroll to top function - पान बदलल्यावर वर स्क्रोल व्हावे (When page changes, scroll to top)
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   // Pagination functions
   const goToPage = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop(); // पान बदलल्यावर वर स्क्रोल व्हावे (Scroll to top when page changes)
   };
 
   const nextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop(); // पान बदलल्यावर वर स्क्रोल व्हावे (Scroll to top when page changes)
   };
 
   const prevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop(); // पान बदलल्यावर वर स्क्रोल व्हावे (Scroll to top when page changes)
   };
 
   // Generate page numbers for pagination
@@ -933,34 +938,37 @@ const ProductShowcase = () => {
   };
 
   return (
-    <section className="py-10 bg-white px-4 sm:px-8 lg:px-26">
+    <section className="py-12 px-4 sm:px-8 lg:px-26" id="products-section">
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-          <div>
-            <h2 className="text-4xl md:text-4xl font-extrabold text-black">
-              Our <span className="text-pink-500">Products</span>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+          <div className="text-center md:text-left">
+            <h2 className="text-4xl md:text-3xl font-bold text-gray-900 mb-2">
+              Discover Our{" "}
+              <span className="bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+                Products
+              </span>
             </h2>
-
-            <p className="text-gray-600 mt-2">
-              {activeFilter === "All" ? "All products" : activeFilter}
+            <p className="text-gray-600 max-w-lg">
+              Explore our premium collection of high-quality products tailored
+              to your needs
             </p>
           </div>
 
           <div className="flex items-center gap-4 w-full md:w-auto">
             {/* Search Bar */}
-            <div className="relative flex-1 md:w-64">
+            <div className="relative flex-1 md:w-72">
               <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search products..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
+                className="w-full pl-10 pr-4 py-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm transition-all duration-400"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   <FiX size={18} />
                 </button>
@@ -970,12 +978,12 @@ const ProductShowcase = () => {
             {/* Mobile Filter Toggle */}
             <button
               onClick={() => setShowMobileFilters(!showMobileFilters)}
-              className="md:hidden flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition-colors"
+              className="md:hidden flex items-center gap-2 bg-white hover:bg-pink-50 px-4 py-3 rounded-xl transition-all duration-400 shadow-sm border border-gray-200"
             >
-              <FiFilter />
-              <span>Filters</span>
+              <FiFilter className="text-pink-600" />
+              <span className="font-medium">Filters</span>
               <FiChevronDown
-                className={`transition-transform ${
+                className={`transition-transform duration-400 ${
                   showMobileFilters ? "rotate-180" : ""
                 }`}
               />
@@ -985,25 +993,27 @@ const ProductShowcase = () => {
 
         {/* Active Filters */}
         {(activeFilter !== "All" || searchQuery) && (
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="text-sm text-gray-500">Active filters:</span>
+          <div className="flex flex-wrap items-center gap-3 mb-8">
+            <span className="text-sm text-gray-500 font-medium">
+              Active filters:
+            </span>
             {activeFilter !== "All" && (
-              <div className="flex items-center bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">
+              <div className="flex items-center bg-pink-100 text-pink-800 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm">
                 {activeFilter}
                 <button
                   onClick={() => setActiveFilter("All")}
-                  className="ml-2 text-pink-600 hover:text-pink-800"
+                  className="ml-2 text-pink-600 hover:text-pink-800 transition-colors"
                 >
                   <FiX size={16} />
                 </button>
               </div>
             )}
             {searchQuery && (
-              <div className="flex items-center bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+              <div className="flex items-center bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm">
                 Search: "{searchQuery}"
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="ml-2 text-gray-600 hover:text-gray-800"
+                  className="ml-2 text-gray-600 hover:text-gray-800 transition-colors"
                 >
                   <FiX size={16} />
                 </button>
@@ -1011,7 +1021,7 @@ const ProductShowcase = () => {
             )}
             <button
               onClick={clearFilters}
-              className="text-sm text-pink-600 hover:text-pink-800 underline"
+              className="text-sm text-pink-600 hover:text-pink-800 font-medium underline transition-colors"
             >
               Clear all
             </button>
@@ -1019,11 +1029,21 @@ const ProductShowcase = () => {
         )}
 
         {/* Results Count */}
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-sm text-gray-600">
-            Showing {indexOfFirstProduct + 1}-
-            {Math.min(indexOfLastProduct, searchedProducts.length)} of{" "}
-            {searchedProducts.length} products
+        <div className="flex justify-between items-center mb-6">
+          <p className="text-sm text-gray-600 font-medium">
+            Showing{" "}
+            <span className="text-pink-600 font-bold">
+              {indexOfFirstProduct + 1}
+            </span>
+            -
+            <span className="text-pink-600 font-bold">
+              {Math.min(indexOfLastProduct, searchedProducts.length)}
+            </span>{" "}
+            of{" "}
+            <span className="text-pink-600 font-bold">
+              {searchedProducts.length}
+            </span>{" "}
+            products
           </p>
         </div>
 
@@ -1031,12 +1051,15 @@ const ProductShowcase = () => {
         <AnimatePresence>
           {showMobileFilters && (
             <motion.div
-              className="md:hidden mb-6 bg-white p-4 rounded-lg shadow-lg border border-gray-200"
+              className="md:hidden mb-8 bg-white p-5 rounded-xl shadow-lg border border-gray-200"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ type: "spring", damping: 25 }}
             >
+              <h3 className="text-lg font-bold text-gray-800 mb-3">
+                Filter by Category
+              </h3>
               <div className="grid grid-cols-2 gap-3">
                 {["All", ...products.categories].map((category) => (
                   <button
@@ -1045,10 +1068,10 @@ const ProductShowcase = () => {
                       setActiveFilter(category);
                       setShowMobileFilters(false);
                     }}
-                    className={`px-4 py-2 rounded-lg text-sm text-left ${
+                    className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-400 ${
                       activeFilter === category
-                        ? "bg-pink-700 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm"
                     }`}
                   >
                     {category}
@@ -1060,15 +1083,15 @@ const ProductShowcase = () => {
         </AnimatePresence>
 
         {/* Desktop Filters */}
-        <div className="hidden md:flex gap-3 mb-8 overflow-x-auto pb-2">
+        <div className="hidden md:flex gap-3 mb-10 overflow-x-auto pb-3">
           {["All", ...products.categories].map((category) => (
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-4 py-2 rounded-full whitespace-nowrap ${
+              className={`px-5 py-3 rounded-full whitespace-nowrap font-medium transition-all duration-400 shadow-sm ${
                 activeFilter === category
-                  ? "bg-pink-600 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md"
+                  : "bg-white text-gray-700 hover:bg-pink-50 hover:shadow-md border border-gray-200"
               }`}
             >
               {category}
@@ -1079,7 +1102,7 @@ const ProductShowcase = () => {
         {/* Product Grid */}
         {currentProducts.length > 0 ? (
           <>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-7 mb-10">
               {currentProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}
@@ -1092,22 +1115,21 @@ const ProductShowcase = () => {
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="flex flex-col items-center gap-4 mb-8">
+              <div className="flex flex-col items-center gap-6 mb-10">
                 {/* Pagination Buttons */}
                 <div className="flex justify-center items-center gap-2 flex-wrap">
                   {/* Previous Button */}
                   <button
                     onClick={prevPage}
                     disabled={currentPage === 1}
-                    className={`flex items-center gap-1 px-4 py-2 rounded-lg border transition-all
-                      ${
-                        currentPage === 1
-                          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300"
-                          : "bg-white text-pink-600 hover:bg-pink-600 hover:text-white border-pink-600 hover:border-pink-700"
-                      }`}
+                    className={`flex items-center gap-1 px-5 py-2.5 rounded-xl border transition-all duration-400 font-medium
+                  ${
+                    currentPage === 1
+                      ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-400"
+                      : "bg-gradient-to-r from-pink-400 to-rose-500 text-white hover:from-pink-600 hover:to-rose-400 border-pink-700 shadow-md hover:shadow-lg"
+                  }`}
                   >
                     <FiChevronLeft className="w-4 h-4" />
-                    Previous
                   </button>
 
                   {/* Page Numbers */}
@@ -1115,12 +1137,12 @@ const ProductShowcase = () => {
                     <button
                       key={pageNumber}
                       onClick={() => goToPage(pageNumber)}
-                      className={`px-4 py-2 rounded-lg border transition-all min-w-[40px]
-                        ${
-                          currentPage === pageNumber
-                            ? "bg-pink-600 text-white border-pink-600"
-                            : "bg-white text-pink-600 hover:bg-pink-50 border-pink-600"
-                        }`}
+                      className={`px-4 py-2.5 rounded-xl border transition-all duration-400 min-w-[44px] font-medium
+                    ${
+                      currentPage === pageNumber
+                        ? "bg-gradient-to-r from-pink-400 to-rose-400 text-white border-pink-700 shadow-lg"
+                        : "bg-gradient-to-r from-pink-400 to-rose-400 text-white hover:from-pink-400 hover:to-rose-400 border-pink-500 shadow-md hover:shadow-lg"
+                    }`}
                     >
                       {pageNumber}
                     </button>
@@ -1130,33 +1152,44 @@ const ProductShowcase = () => {
                   <button
                     onClick={nextPage}
                     disabled={currentPage === totalPages}
-                    className={`flex items-center gap-1 px-4 py-2 rounded-lg border transition-all
-                      ${
-                        currentPage === totalPages
-                          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300"
-                          : "bg-white text-pink-600 hover:bg-pink-600 hover:text-white border-pink-600 hover:border-pink-700"
-                      }`}
+                    className={`flex items-center gap-1 px-5 py-2.5 rounded-xl border transition-all duration-400 font-medium
+                  ${
+                    currentPage === totalPages
+                      ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-400"
+                      : "bg-gradient-to-r from-pink-400 to-rose-500 text-white hover:from-pink-600 hover:to-rose-400 border-pink-700 shadow-md hover:shadow-lg"
+                  }`}
                   >
-                    Next
                     <FiChevronRight className="w-4 h-4" />
                   </button>
+                </div>
+
+                {/* Page Indicator */}
+                <div className="text-sm text-gray-600 font-medium">
+                  Page{" "}
+                  <span className="text-pink-600 font-bold">{currentPage}</span>{" "}
+                  of{" "}
+                  <span className="text-pink-600 font-bold">{totalPages}</span>
                 </div>
               </div>
             )}
           </>
         ) : (
-          <div className="text-center py-12">
-            <div className="text-gray-400 mb-4">
-              <FiSearch size={48} className="mx-auto" />
+          <div className="text-center py-16 bg-white rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-gray-400 mb-5">
+              <FiSearch size={56} className="mx-auto" />
             </div>
-            <p className="text-gray-500 text-lg mb-4">
-              No products found matching your criteria
+            <h3 className="text-xl font-bold text-gray-800 mb-3">
+              No products found
+            </h3>
+            <p className="text-gray-500 max-w-md mx-auto mb-6">
+              We couldn't find any products matching your search criteria. Try
+              adjusting your filters or search terms.
             </p>
             <button
               onClick={clearFilters}
-              className="text-black font-medium underline hover:text-pink-600"
+              className="px-6 py-3 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-medium rounded-xl hover:from-pink-700 hover:to-rose-700 hover:shadow-lg transition-all duration-400"
             >
-              Reset filters
+              Reset all filters
             </button>
           </div>
         )}

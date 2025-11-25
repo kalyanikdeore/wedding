@@ -89,7 +89,7 @@ const CartSidebar = () => {
           {/* Header */}
           <div className="border-b p-4 flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <ShoppingCart size={20} className="text-blue-600" />
+              <ShoppingCart size={20} className="text-pink-600" />
               <h3 className="text-xl font-bold">Your Cart ({itemCount})</h3>
             </div>
             <div className="flex items-center gap-2">
@@ -97,7 +97,7 @@ const CartSidebar = () => {
                 <>
                   <button
                     onClick={shareOnWhatsApp}
-                    className="text-sm text-green-600 hover:text-green-700 flex items-center gap-1"
+                    className="text-sm text-pink-600 hover:text-pink-700 flex items-center gap-1"
                     title="Share cart on WhatsApp"
                   >
                     <Share2 size={16} />
@@ -129,7 +129,7 @@ const CartSidebar = () => {
                 <Link
                   to="/products"
                   onClick={toggleCart}
-                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg transition-colors"
                 >
                   <ShoppingCart size={18} />
                   <span>Start Shopping</span>
@@ -201,7 +201,7 @@ const CartSidebar = () => {
             <div className="border-t p-4 bg-gray-50">
               <button
                 onClick={shareOnWhatsApp}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-center font-medium transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg text-center font-medium transition-colors flex items-center justify-center gap-2"
               >
                 <Share2 size={18} />
                 <span>Checkout via WhatsApp</span>

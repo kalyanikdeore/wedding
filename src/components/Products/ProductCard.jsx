@@ -49,7 +49,7 @@ const ProductCard = ({ product, index }) => {
           <div className="flex justify-between items-center mt-3">
             <button
               onClick={handleAddToCart}
-              className="flex items-center gap-7 text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg transition-colors"
+              className="flex items-center gap-7 text-sm bg-gradient-to-r from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-400 text-white px-3 py-1.5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
             >
               <ShoppingCart className="w-4 h-4" />
               <span className="hidden md:flex">Add to Cart</span>

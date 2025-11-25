@@ -60,7 +60,15 @@ const Navbar = () => {
             {/* Social Icons */}
             <div className="flex items-center gap-2 sm:gap-3">
               <FiFacebook className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
-              <FiInstagram className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
+              <FiInstagram
+                className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4"
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/wedding_store_nashik/",
+                    "_blank"
+                  )
+                }
+              />
               <FiTwitter className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
             </div>
           </div>

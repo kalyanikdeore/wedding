@@ -7,6 +7,9 @@ import About from "./About";
 import WhatsAppPopup from "../../components/PopUp/WhatsAppPopup";
 import ProdductCategories from "../ProductCategories/ProductCategories";
 import ProductShowcase from "../products/ProductShowcase";
+import Testimonial from "../Homepage/Testimonial";
+import Faq from "../Homepage/Faq";
+import Review from "../Homepage/Review";
 
 function Homepage() {
   return (
@@ -30,6 +33,10 @@ function Homepage() {
       <div id="gallery">
         <Gallery />
       </div>
+
+      <Testimonial />
+      <Review />
+      <Faq />
 
       <div id="contact">
         <Contact />

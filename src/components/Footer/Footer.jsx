@@ -71,20 +71,41 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-4 text-lg">Follow Us</h3>
           <p className="text-sm mb-5">Join our wedding community 🤍</p>
           <div className="flex gap-4">
-            {[FaFacebookF, FaInstagram, FaTwitter].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="p-3 rounded-full
-                bg-gradient-to-r from-pink-600 to-rose-500
-                shadow-xl
-                hover:shadow-pink-600/50
-                hover:scale-125
-                transition-all duration-300 flex items-center justify-center"
-              >
-                <Icon className="text-white text-xl" />
-              </a>
-            ))}
+            <a
+              href="#"
+              className="p-3 rounded-full
+      bg-gradient-to-r from-pink-600 to-rose-500
+      shadow-xl
+      hover:shadow-pink-600/50
+      hover:scale-125
+      transition-all duration-300 flex items-center justify-center"
+            >
+              <FaFacebookF className="text-white text-xl" />
+            </a>
+            <a
+              href="https://www.instagram.com/wedding_store_nashik/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full
+      bg-gradient-to-r from-pink-600 to-rose-500
+      shadow-xl
+      hover:shadow-pink-600/50
+      hover:scale-125
+      transition-all duration-300 flex items-center justify-center"
+            >
+              <FaInstagram className="text-white text-xl" />
+            </a>
+            <a
+              href="#"
+              className="p-3 rounded-full
+      bg-gradient-to-r from-pink-600 to-rose-500
+      shadow-xl
+      hover:shadow-pink-600/50
+      hover:scale-125
+      transition-all duration-300 flex items-center justify-center"
+            >
+              <FaTwitter className="text-white text-xl" />
+            </a>
           </div>
         </div>
       </div>
