@@ -8,7 +8,7 @@ import {
   FiShoppingCart,
 } from "react-icons/fi";
 import { useCart } from "../../context/CartContext";
-import { logo } from "../../assets";
+import { logo, logoc } from "../../assets";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,27 +42,27 @@ const Navbar = () => {
     <>
       {/* Top Fixed Navbar - Fully Responsive */}
       <div className="bg-pink-600 text-white fixed w-full z-50 top-0">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6">
-          <div className="flex justify-between items-center h-10 text-xs sm:text-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex justify-between items-center h-14 sm:h-10 text-sm sm:text-base">
             {/* Contact Info */}
-            <div className="flex items-center gap-3 flex-wrap max-w-[70%] sm:max-w-full">
-              <div className="flex items-center gap-1 min-w-max">
-                <FiMail className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="truncate max-w-[100px] sm:max-w-none">
+            <div className="flex items-center gap-4 flex-wrap max-w-[70%] sm:max-w-full">
+              <div className="flex items-center gap-2 min-w-max">
+                <FiMail className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span className="truncate max-w-[120px] sm:max-w-none">
                   weddingstorensk@gmail.com
                 </span>
               </div>
-              <div className="flex items-center gap-1 min-w-max">
-                <FiPhone className="w-3 h-3 sm:w-4 sm:h-4" />
+              <div className="flex items-center gap-2 min-w-max">
+                <FiPhone className="w-4 h-4 sm:w-4 sm:h-4" />
                 <span>+91 70300 50044</span>
               </div>
             </div>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <FiFacebook className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
+            <div className="flex items-center gap-3 sm:gap-3">
+              <FiFacebook className="hover:text-gray-300 cursor-pointer w-4 h-4 sm:w-4 sm:h-4" />
               <FiInstagram
-                className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4"
+                className="hover:text-gray-300 cursor-pointer w-4 h-4 sm:w-4 sm:h-4"
                 onClick={() =>
                   window.open(
                     "https://www.instagram.com/wedding_store_nashik/",
@@ -70,38 +70,32 @@ const Navbar = () => {
                   )
                 }
               />
-              <FiTwitter className="hover:text-gray-300 cursor-pointer w-3 h-3 sm:w-4 sm:h-4" />
+              <FiTwitter className="hover:text-gray-300 cursor-pointer w-4 h-4 sm:w-4 sm:h-4" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Spacer for fixed navbar */}
-      <div className="h-10"></div>
+      <div className="h-14 sm:h-10"></div>
 
       {/* Main Navbar */}
-      <nav className="bg-white/90 backdrop-blur-lg shadow-md sticky top-10 z-40">
+      <nav className="bg-white/90 backdrop-blur-lg shadow-md sticky top-14 sm:top-10 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16 md:h-30">
-            {/* Logo */}
+          <div className="flex items-center justify-between h-20 md:h-30">
+            {/* Logo - Only mobile width increased */}
             <a
               href="#home"
               className="flex items-center cursor-pointer"
               onClick={() => setIsOpen(false)}
             >
               <img
-                src={logo}
+                src={logoc}
                 alt="Wedding Store"
-                className="h-10 md:h-25 w-25"
+                className="h-16 w-32 md:h-16 md:w-27 lg:h-40 lg:w-60 object-contain transition-all duration-300 hover:scale-105"
               />
             </a>
-            {/* <a
-              href="#home"
-              className="text-2xl md:text-3xl font-bold text-black cursor-pointer tracking-wide flex"
-              onClick={() => setIsOpen(false)}
-            >
-              Wedding<span className="text-pink-600">Store</span>
-            </a> */}
+
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-8">
               {menuItems.map((item) => (
@@ -122,9 +116,9 @@ const Navbar = () => {
                 onClick={handleCartClick}
                 className="relative p-2 text-gray-600 hover:text-pink-600 transition-colors"
               >
-                <FiShoppingCart className="w-5 h-5" />
+                <FiShoppingCart className="w-6 h-6" />
                 {cart.itemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
                     {cart.itemCount}
                   </span>
                 )}
@@ -133,22 +127,22 @@ const Navbar = () => {
               {/* Enquiry Button */}
               <button
                 onClick={scrollToContact}
-                className="bg-gradient-to-r from-pink-500 to-pink-700 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-md hover:opacity-90 transition-opacity"
+                className="bg-gradient-to-r from-pink-500 to-pink-700 text-white px-6 py-3 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-opacity"
               >
                 Enquiry Now
               </button>
             </div>
 
             {/* Mobile Right Side - Cart & Menu Button */}
-            <div className="lg:hidden flex items-center gap-3">
+            <div className="lg:hidden flex items-center gap-4">
               {/* Mobile Shopping Cart */}
               <button
                 onClick={handleCartClick}
-                className="relative p-2 text-gray-600 hover:text-pink-600 transition-colors"
+                className="relative p-3 text-gray-600 hover:text-pink-600 transition-colors"
               >
-                <FiShoppingCart className="w-5 h-5" />
+                <FiShoppingCart className="w-6 h-6" />
                 {cart.itemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
+                  <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center text-[10px]">
                     {cart.itemCount}
                   </span>
                 )}
@@ -157,10 +151,10 @@ const Navbar = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={handleMenuToggle}
-                className="text-gray-800 p-2 hover:text-pink-600 transition-colors"
+                className="text-gray-800 p-3 hover:text-pink-600 transition-colors"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-7 h-7"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -187,17 +181,26 @@ const Navbar = () => {
 
           {/* Mobile Navigation Menu */}
           {isOpen && (
-            <div className="lg:hidden bg-white border-t border-gray-200 mt-2 rounded-lg shadow-lg py-3 space-y-1">
+            <div className="lg:hidden bg-white border-t border-gray-200 mt-2 rounded-lg shadow-lg py-4 space-y-2">
               {menuItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.link}
                   onClick={() => setIsOpen(false)}
-                  className="block text-gray-700 px-4 py-3 text-base hover:bg-pink-50 hover:text-pink-600 transition-all rounded-md mx-2"
+                  className="block text-gray-700 px-4 py-4 text-lg hover:bg-pink-50 hover:text-pink-600 transition-all rounded-md mx-2"
                 >
                   {item.name}
                 </a>
               ))}
+              {/* Mobile Enquiry Button */}
+              <div className="px-4 py-3">
+                <button
+                  onClick={scrollToContact}
+                  className="w-full bg-gradient-to-r from-pink-500 to-pink-700 text-white px-6 py-3 rounded-full text-base font-semibold shadow-md hover:opacity-90 transition-opacity"
+                >
+                  Enquiry Now
+                </button>
+              </div>
             </div>
           )}
         </div>

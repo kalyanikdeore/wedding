@@ -98,8 +98,9 @@ import ma23 from "../assets/images/ma23.jpeg";
 import ma24 from "../assets/images/ma24.jpeg";
 import ma25 from "../assets/images/ma25.jpeg";
 import logo from "../assets/images/logo.png";
-
+import logoc from "../assets/images/logoc.png";
 export {
+  logoc,
   logo,
   flowerpot1,
   toran11,
