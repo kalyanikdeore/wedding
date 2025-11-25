@@ -8,6 +8,7 @@ import {
   FiShoppingCart,
 } from "react-icons/fi";
 import { useCart } from "../../context/CartContext";
+import { logo } from "../../assets";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +54,7 @@ const Navbar = () => {
               </div>
               <div className="flex items-center gap-1 min-w-max">
                 <FiPhone className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>+91 7030050044</span>
+                <span>+91 70300 50044</span>
               </div>
             </div>
 
@@ -81,18 +82,26 @@ const Navbar = () => {
       {/* Main Navbar */}
       <nav className="bg-white/90 backdrop-blur-lg shadow-md sticky top-10 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-16 md:h-30">
             {/* Logo */}
-            {/* <div className="text-2xl md:text-3xl font-bold text-black cursor-pointer tracking-wide">
-              Wedding<span className="text-pink-600">Store</span>
-            </div> */}
             <a
+              href="#home"
+              className="flex items-center cursor-pointer"
+              onClick={() => setIsOpen(false)}
+            >
+              <img
+                src={logo}
+                alt="Wedding Store"
+                className="h-10 md:h-25 w-25"
+              />
+            </a>
+            {/* <a
               href="#home"
               className="text-2xl md:text-3xl font-bold text-black cursor-pointer tracking-wide flex"
               onClick={() => setIsOpen(false)}
             >
               Wedding<span className="text-pink-600">Store</span>
-            </a>
+            </a> */}
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-8">
               {menuItems.map((item) => (
