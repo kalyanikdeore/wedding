@@ -89,7 +89,7 @@ const Hero = () => {
         >
           <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
           <span className="text-sm font-medium text-white/90 tracking-wider">
-            Premium Wedding Decorators
+            Premium Wedding related products
           </span>
         </motion.div>
 
