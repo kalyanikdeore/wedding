@@ -71,6 +71,36 @@ const CartSidebar = () => {
     window.open(whatsappUrl, "_blank");
   };
 
+  const scrollToProducts = () => {
+    toggleCart(); // Close the cart first
+
+    // Use setTimeout to ensure the cart is closed before scrolling
+    setTimeout(() => {
+      const productsSection = document.getElementById("products");
+      if (productsSection) {
+        productsSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
+  };
+
+  const handleStartShopping = () => {
+    toggleCart(); // Close the cart first
+
+    // Use setTimeout to ensure the cart is closed before scrolling
+    setTimeout(() => {
+      const productsSection = document.getElementById("products");
+      if (productsSection) {
+        productsSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
+  };
+
   return (
     <div className={`fixed inset-0 z-50 ${isCartOpen ? "block" : "hidden"}`}>
       {/* Overlay */}
@@ -126,14 +156,13 @@ const CartSidebar = () => {
               <div className="text-center py-12 flex flex-col items-center h-full justify-center">
                 <EmptyCartIllustration />
                 <p className="text-gray-500 text-lg mb-4">Your cart is empty</p>
-                <Link
-                  to="/products"
-                  onClick={toggleCart}
+                <button
+                  onClick={handleStartShopping}
                   className="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg transition-colors"
                 >
                   <ShoppingCart size={18} />
                   <span>Start Shopping</span>
-                </Link>
+                </button>
               </div>
             ) : (
               <ul className="divide-y">
@@ -207,13 +236,12 @@ const CartSidebar = () => {
                 <span>Checkout via WhatsApp</span>
               </button>
 
-              <Link
-                to="/products"
-                onClick={toggleCart}
-                className="block mt-3 text-center text-blue-600 hover:text-blue-800 hover:underline text-sm"
+              <button
+                onClick={scrollToProducts}
+                className="w-full mt-3 text-center text-pink-600 hover:text-pink-800 hover:underline text-sm py-2"
               >
                 Continue Shopping
-              </Link>
+              </button>
             </div>
           )}
         </div>
