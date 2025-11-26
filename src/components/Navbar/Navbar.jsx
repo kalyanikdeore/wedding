@@ -82,7 +82,7 @@ const Navbar = () => {
       {/* Main Navbar */}
       <nav className="bg-white/90 backdrop-blur-lg shadow-md sticky top-14 sm:top-10 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-20 md:h-30">
+          <div className="flex items-center justify-between h-20 md:h-20">
             {/* Logo - Only mobile width increased */}
             <a
               href="#home"
