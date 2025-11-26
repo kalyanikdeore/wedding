@@ -46,12 +46,15 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-14 sm:h-10 text-sm sm:text-base">
             {/* Contact Info */}
             <div className="flex items-center gap-4 flex-wrap max-w-[70%] sm:max-w-full">
-              <div className="flex items-center gap-2 min-w-max">
+              {/* Email - Hidden on mobile, visible on sm and above */}
+              <div className="hidden sm:flex items-center gap-2 min-w-max">
                 <FiMail className="w-4 h-4 sm:w-4 sm:h-4" />
                 <span className="truncate max-w-[120px] sm:max-w-none">
                   weddingstorensk@gmail.com
                 </span>
               </div>
+
+              {/* Phone Number - Always visible */}
               <div className="flex items-center gap-2 min-w-max">
                 <FiPhone className="w-4 h-4 sm:w-4 sm:h-4" />
                 <span>+91 70300 50044</span>
