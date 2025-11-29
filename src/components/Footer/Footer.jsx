@@ -9,22 +9,29 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { whitelogo } from "../../assets";
 
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-gray-950 via-gray-900 to-black text-gray-300 py-16 px-6 md:px-20 border-t border-gray-800">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-gray-700/40">
-        {/* Logo */}
-        <div>
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-300 tracking-wide drop-shadow-lg">
-            Wedding Store
-          </h2>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-400">
+        {/* Logo Section */}
+        <div className="flex flex-col items-center md:items-start">
+          {/* Logo Container */}
+          <div className="flex justify-center md:justify-start w-full mb-4">
+            <a href="#home" className="flex items-center cursor-pointer">
+              <img
+                src={whitelogo}
+                alt="Wedding Store"
+                className=" mb-5 object-contain transition-all duration-300 hover:scale-105"
+              />
+            </a>
+          </div>
+          <p className="text-center md:text-left max-w-xs text-sm leading-relaxed text-gray-400">
             Crafting unforgettable celebrations with elegance & love ✨
           </p>
         </div>
 
-        {/* Menu */}
         {/* Menu */}
         <div>
           <h3 className="text-white font-semibold mb-4 text-lg">Explore</h3>
@@ -111,8 +118,8 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="text-center ">
-        <p className="text-xs text-gray-500 mt-10">
+      <div className="text-center pt-8">
+        <p className="text-xs text-gray-500">
           © {new Date().getFullYear()} Wedding Store
         </p>
       </div>

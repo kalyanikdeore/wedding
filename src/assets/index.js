@@ -99,7 +99,9 @@ import ma24 from "../assets/images/ma24.jpeg";
 import ma25 from "../assets/images/ma25.jpeg";
 import logo from "../assets/images/logo.png";
 import logoc from "../assets/images/logoc.png";
+import whitelogo from "../assets/images/whitelogo.png";
 export {
+  whitelogo,
   logoc,
   logo,
   flowerpot1,
